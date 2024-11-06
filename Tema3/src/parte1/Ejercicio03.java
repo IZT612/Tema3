@@ -74,7 +74,7 @@ public class Ejercicio03 {
 
 		/* Creamos un for con variable "i" en 9, este bucle se repite mientras "i" sea mayor o igual a 
 		 * 0, y a "i" se le va reduciendo 1 por cada iteracion */
-		for (int i = tabla.length ; i >= 0; i--) {
+		for (int i = tabla.length - 1 ; i >= 0; i--) {
 			
 			// A "valor" le damos el valor de la posición de la tabla correspondiente
 			valor = tabla[i];
