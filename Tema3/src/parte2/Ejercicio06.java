@@ -14,60 +14,50 @@ public class Ejercicio06 {
 		// Creamos el generador de numeros aleatorios
 		Random rand = new Random();
 
-		// Creamos un array con tamaño 6 "tabla" donde guardaremos los numeros del usuario
+		// Creamos un array con tamaño 6 "tabla" donde guardaremos los numeros del
+		// usuario
 		int tabla[] = new int[6];
 
-		/* Creamos un array con tamaño 6 y valores predeterminados "ganadores" donde guardamos los numeros 
-		 * ganadores */
+		/*
+		 * Creamos un array con tamaño 6 y valores predeterminados "ganadores" donde
+		 * guardamos los numeros ganadores
+		 */
 		int ganadores[] = { 6, 14, 22, 35, 36, 37 };
 
 		// Creamos la variable "aciertos" para guardar cuantos numeros ha acertado
 		int aciertos = 0;
 
-		// Creamos la variable booleana "seRepite" para guardar si algún número se repite
-		boolean seRepite = false;
+		// Creamos una variable "contador" para introducir datos sin repetirse
+		int contador = 0;
 
-		// Creamos un bucle for que recorre toda la tabla
-		for (int i = 0; i <= (tabla.length - 1); i++) {
+		// Creamos una variable "busqueda" para guardar la posicion del numero que busquemos
+		int busqueda;
 
-			// Introducimos un número en "tabla" aleatorio del 1 al 49
-			tabla[i] = rand.nextInt(1, 50);
+		// Creamos una variable "numero" donde guardaremos el numero generado aleatoriamente
+		int numero;
 
-		}
+		// Creamos un while que se repetira mientras el contador sea menor a 6
+		while (contador < 6) {
 
-		// Hacemos un bucle for que se encargará de evitar que los números se repitan, recorriendo toda la tabla
-		for (int i = 0; i <= (tabla.length - 1); i++) {
+			// Le ponemos un valor aleatorio entre 1  y 49 a "numero"
+			numero = rand.nextInt(1, 50);
 
-			/* Si se repite comenzamos a revisar la tabla desde 0, pues al asignar un valor nuevo a un número 
-			 * que se repite existe la posibilidad de que este se vuelva a repetir */
-			if (seRepite) {
+			// Ordenamos la tabla
+			Arrays.sort(tabla);
 
-				i = 0;
+			// Comprobamos si el numero se repite
+			busqueda = Arrays.binarySearch(tabla, numero);
+
+			// Si no se repite entramos al condicional
+			if (busqueda < 0) {
+
+				// Guardamos el número en la tabla
+				tabla[0] = numero;
+				
+				// Incrementamos el contador
+				contador++;
 
 			}
-
-			// Hacemos un bucle do-while que se repetirá siempre que el número se repita
-			do {
-
-				// Ponemos "seRepite" como falso
-				seRepite = false;
-
-				// Ordenamos la tabla
-				Arrays.sort(tabla);
-
-				// Si el valor de la tabla es igual al siguiente entramos al condicional
-				if (i != (tabla.length - 1) && tabla[i] == tabla[(i + 1)]) {
-
-					// Le damos un nuevo valor a esa posición
-					tabla[i] = rand.nextInt(1, 50);
-
-					// Ponemos "seRepite" como verdadero
-					seRepite = true;
-
-				}
-
-			// El do-while se repetirá siempre que un número se repita
-			} while (seRepite);
 
 		}
 
@@ -76,18 +66,21 @@ public class Ejercicio06 {
 		System.out.println();
 		System.out.println("Y los números ganadores son: " + Arrays.toString(ganadores));
 		System.out.println();
-		
-		// Creamos un bucle for para ver si algún número del jugador coincide con los ganadores
-		for (int i = 0 ; i <= (tabla.length - 1) ; i++) {
+
+		// Hacemos un for-each recorriendo toda la tabla
+		for (int valor : tabla) {
+
+			// Buscamos si el valor está en la tabla de ganadores
+			busqueda = Arrays.binarySearch(ganadores, valor);
 			
-			// Si encuentra uno, la posición será 0 o mayor, así que entramos al condicional si es el caso
-			if(Arrays.binarySearch(ganadores, tabla[i]) >= 0) {
-				
-				// Y aumentamos en 1 "aciertos"
-				aciertos++;
-				
+			// Si está entramos al condicional
+			if (busqueda >= 0) {
+
+				// Incrementamos en 1 el contador
+				contador++;
+
 			}
-			
+
 		}
 
 		// Le mostramos cuantos números ha acrtado
