@@ -1,5 +1,6 @@
 package parte2;
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
@@ -97,6 +98,8 @@ public class Ejercicio05 {
 
 		// El bucle se repite siempre que haya error
 		} while (error);
+		
+		Arrays.sort(tabla);
 
 		// Creamos un bucle for que recorrerá toda la tabla
 		for (int i = 0; i <= (tabla.length - 1); i++) {
