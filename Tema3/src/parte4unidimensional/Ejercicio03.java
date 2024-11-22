@@ -1,4 +1,4 @@
-package parte4;
+package parte4unidimensional;
 
 import java.util.Arrays;
 import java.util.InputMismatchException;
