@@ -3,18 +3,13 @@ package parte4bidimensional;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Ejercicio02 {
+public class Ejercicio03 {
 
 	public static void main(String[] args) {
-
 		Scanner sc = new Scanner(System.in);
 
 		// Creamos un array bidimensional "tabla" para guardar los valores del usuario
 		int[][] tabla;
-
-		// Creamos un array bidimensional "tablaTraspuesta" donde guardaremos la tabla
-		// del usuario pero traspuesta
-		int[][] tablaTraspuesta;
 
 		// Creamos una variable entera "filas" para guardar cuantas filas tendrá el
 		// array del usuario
@@ -149,55 +144,21 @@ public class Ejercicio02 {
 
 		}
 
-		// Al array "tablaTraspuesta" le damos los valores de la tabla devuelta por la
-		// funcion "traspuesta" dada "tabla"
-		tablaTraspuesta = traspuesta(tabla);
-
-		// Creamos un for que recorre las filas de "tablaTraspuesta
-		for (int i = 0; i < tablaTraspuesta.length; i++) {
-
-			// Otro para recorrer sus columnas
-			for (int j = 0; j < tablaTraspuesta[i].length; j++) {
-
-				// Mostramos el valor que se encuentra en cada posición
-				System.out.print(tablaTraspuesta[i][j]);
-
-			}
-
-			// Creamos un espacio al cambiar de fila
-			System.out.println();
-
-		}
-
-		// Cerramos el scanner
 		sc.close();
-
+		
 	}
-
-	// Creamos la funcion "traspuesta" que devolverá un array bidimensional y
-	// requiere un array bidimensional que llamaremos "tabla"
-	static int[][] traspuesta(int[][] tabla) {
-
-		// Creamos un array bidimensional "tablaTraspuesta" cuya cantidad de filas serán
-		// las columnas de "tabla" y sus columnas la cantidad de filas de "tabla
-		int[][] tablaTraspuesta = new int[tabla[0].length][tabla.length];
-
-		// Creamos un for que recorre las filas de "tabla
+	
+	static boolean simetrica(int[][] tabla) {
+		
+		boolean simetrica = false;
+		
 		for (int i = 0; i < tabla.length; i++) {
-
-			// Otro que recorre sus columnas
-			for (int j = 0; j < tabla[i].length; j++) {
-
-				// Guardamos los valores al revés en "tablaTraspuesta"
-				tablaTraspuesta[j][i] = tabla[i][j];
-
-			}
-
+			
+			
 		}
-
-		// Devolvemos "tablaTraspuesta"
-		return tablaTraspuesta;
-
+		
+		
+		return simetrica;
 	}
 
 }
