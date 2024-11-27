@@ -3,25 +3,26 @@ package parte4bidimensional;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Ejercicio03 {
+public class Ejercicio04 {
 
 	public static void main(String[] args) {
+
 		Scanner sc = new Scanner(System.in);
 
-		// Creamos un array bidimensional "tabla" para guardar los valores del usuario
+		// Creamos el array bidimensional "tabla" donde guardaremos la matriz del
+		// usuario
 		int[][] tabla;
 
-		// Creamos una variable entera "dimensiones" para guardar cuantas filas y
-		// columnas tendrá el
-		// array del usuario
-		int dimensiones = 0;
-
-		// Creamos una variable booleana "error" para guardar si hay errores al pedir
+		// Creamos la variable booleana "error" donde guardaremos si hay error al pedir
 		// los datos
 		boolean error;
 
-		// Creamos una variable booleana "simetrica" para guardar si es simetrica
-		boolean simetrica;
+		// Creamos la variable booleana "magica" donde guardaremos si es mágica o no
+		boolean magica;
+
+		// Creamos la variable entera "dimensiones" donde guardaremos las dimensiones de
+		// la matriz
+		int dimensiones = 0;
 
 		// Creamos un do-while para pedir los datos de filas y columnas
 		do {
@@ -101,20 +102,19 @@ public class Ejercicio03 {
 		}
 
 		/*
-		 * Guardamos el valor el resultado obtenido al llamar la funcion "esSimetrica"
-		 * dandole "tabla" como parámetro en "simetrica"
-		 */
-		simetrica = esSimetrica(tabla);
+		 * Guardamos en "magica" el booleano recibido al llamar a la funcion "esMagica"
+		 * dandole como parametro "tabla"
+		 */ magica = esMagica(tabla);
 
-		// Si es simétrica, mostramos al usuario que la matriz es simétrica
-		if (simetrica) {
+		// Si es magica se lo informamos al usuario
+		if (magica) {
 
-			System.out.println("La tabla bidimensional es simétrica");
+			System.out.println("La tabla es mágica");
 
-			// Si no, le mostramos que es asimétrica
+			// Y si no, le informamos al usuario que no lo es
 		} else {
 
-			System.out.println("La tabla bidimensional es asimétrica");
+			System.out.println("La tabla no es mágica");
 
 		}
 
@@ -123,54 +123,104 @@ public class Ejercicio03 {
 
 	}
 
-	/*
-	 * Creamos una funcion "esSimetrica" que devuelve un booleano, y requiere un
-	 * array bidimensional llamado "tabla"
-	 */
-	static boolean esSimetrica(int[][] tabla) {
+	// Creamos la función "esMagica", la cual devuelve un booleano y requiere un
+	// array bidimensional "tabla"
+	static boolean esMagica(int[][] tabla) {
 
-		// Creamos una variable booleana "simetrica" donde guardamos si es simetrica o
-		// no
-		boolean simetrica = true;
+		// Creamos una variable booleana "magica", donde guardaremos si "tabla" es
+		// magica o no
+		boolean magica = true;
 
 		// Creamos una variable entera "filas" que usaremos como contador para recorrer
 		// las filas de "tabla"
 		int filas = 0;
 
-		/*
-		 * Creamos una variable entera "columnas" que usaremos como contador para
-		 * recorrer las columnas de "tabla"
-		 */
+		// Creamos una variable entera "columnas" que usaremos como contador para
+		// recorrer las columnas de "tabla"
 		int columnas = 0;
 
-		// Creamos un bucle "while" que recorre las filas de "tabla" mientras sea
-		// simétrica
-		while (filas < tabla.length && simetrica) {
+		// Creamos una variable entera "sumaInicial" donde guardaremos la primera suma,
+		// la cual debería ser igual a todas las demás si es mágica
+		int sumaInicial = 0;
 
-			// Creamos un bucle "while" que recorre las columnas de "tabla" mientras sea
-			// simétrica
-			while (columnas < tabla[filas].length && simetrica) {
+		// Creamos una variable entera "suma" donde iremos guardando las sumas de las
+		// filas y columnas de "tabla"
+		int suma = 0;
 
-				// Vamos comprobando cada valor, buscando si NO es simetrica
-				if (!(tabla[filas][columnas] == tabla[columnas][filas])) {
+		// Creamos un while para recorrer las filas de "tabla" siempre que sea mágica
+		while (filas < tabla.length && magica) {
 
-					// Si es el paso ponemos "simetrica" como false
-					simetrica = false;
+			// Reiniciamos el valor de "suma"
+			suma = 0;
 
-				}
+			// Otro para recorrer las columnas siempre que sea mágica
+			while (columnas < tabla[filas].length && magica) {
 
-				// Incrementamos "columnas"
+				// Sumamos el valor en "suma"
+				suma += tabla[filas][columnas];
+
+				// Incrementamos las columnas
 				columnas++;
 
 			}
 
-			// Incrementamos "filas"
+			// Si "filas" equivale a 0, es la primera suma, asi que guardamos "suma" en
+			// "sumaInicial"
+			if (filas == 0) {
+
+				sumaInicial = suma;
+
+			}
+
+			// Si "suma" no es igual a "sumaInicial" ponemos "magica" como false
+			if (!(suma == sumaInicial)) {
+
+				magica = false;
+
+			}
+
+			// Incrementamos las filas
 			filas++;
+
+			// Reiniciamos las columnas
+			columnas = 0;
 
 		}
 
-		// Devolvemos "simetrica"
-		return simetrica;
+		// Reiniciamos "filas" para evitar errores en el proximo while
+		filas = 0;
+
+		// Reiniciamos "columnas" para evitar errores en el proximo while
+		columnas = 0;
+
+		// Repetimos los whiles anterior pero esta vez recorriendo primero las columnas
+		while (columnas < tabla[filas].length && magica) {
+
+			suma = 0;
+
+			while (filas < tabla.length && magica) {
+
+				suma += tabla[filas][columnas];
+
+				filas++;
+
+			}
+
+			if (!(suma == sumaInicial)) {
+
+				magica = false;
+
+			}
+
+			columnas++;
+
+			filas = 0;
+
+		}
+
+		// Devolvemos magica
+		return magica;
+
 	}
 
 }
