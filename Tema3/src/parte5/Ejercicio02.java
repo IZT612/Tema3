@@ -102,11 +102,17 @@ public class Ejercicio02 {
 			tabla[i] = numero;
 
 		}
+		
+		// Le mostramos al usuario su tabla inicial
+		System.out.println("Su tabla inicial: ");
+		System.out.println(Arrays.toString(tabla));
+		System.out.println();
 
 		// Llamamos a la función que desordena la tabla
 		desordenar(tabla);
-
-		// Mostramos la tabla
+		
+		// Le mostramos al usuario su tabla desordenada
+		System.out.println("Su tabla desordenada: ");
 		System.out.println(Arrays.toString(tabla));
 
 		// Cerramos el scanner
